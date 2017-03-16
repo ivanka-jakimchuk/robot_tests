@@ -472,9 +472,6 @@ def get_complaint_index_by_complaintID(data, complaintID):
 
 def generate_test_bid_data(tender_data):
     bid = test_bid_data()
-    if tender_data.get('procurementMethodType', '')[:-2] in ('aboveThreshold', 'competitiveDialogue'):
-        bid.data.selfEligible = True
-        bid.data.selfQualified = True
     if 'lots' in tender_data:
         bid.data.lotValues = []
         for lot in tender_data['lots']:
@@ -505,9 +502,6 @@ def generate_test_bid_data_second_stage(tender_data, index='0'):
     bid['data']['tenderers'][0]['identifier']['scheme'] = tender_data['shortlistedFirms'][index]['identifier']['scheme']
     bid['data']['tenderers'][0]['identifier']['legalName'] = tender_data['shortlistedFirms'][index]['identifier']['legalName']
 
-    if tender_data.get('procurementMethodType', '')[:-2] in ('aboveThreshold', 'competitiveDialogue'):
-        bid.data.selfEligible = True
-        bid.data.selfQualified = True
     if 'lots' in tender_data:
         bid.data.lotValues = []
         for lot in tender_data['lots']:

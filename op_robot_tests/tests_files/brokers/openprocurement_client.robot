@@ -122,13 +122,11 @@ Library  openprocurement_client_helper.py
   openprocurement_client.Пошук тендера по ідентифікатору
   ...      ${username}
   ...      ${tender_uaid}
-
   ${status}  ${field_value}=  Run keyword and ignore error
   ...      Get from object
   ...      ${USERS.users['${username}'].tender_data.data}
   ...      ${field_name}
   Run Keyword if  '${status}' == 'PASS'  Return from keyword   ${field_value}
-
   Fail  Field not found: ${field_name}
 
 
@@ -245,11 +243,8 @@ Library  openprocurement_client_helper.py
   ${cancellation_data}=  munch_dict  arg=${cancellation_data}
   ${cancel_reply}=  Call Method  ${USERS.users['${username}'].client}  create_cancellation  ${tender}  ${cancellation_data}
   ${cancellation_id}=  Set variable  ${cancel_reply.data.id}
-
   ${document_id}=  openprocurement_client.Завантажити документацію до запиту на скасування  ${username}  ${tender_uaid}  ${cancellation_id}  ${document}
-
   openprocurement_client.Змінити опис документа в скасуванні  ${username}  ${tender_uaid}  ${cancellation_id}  ${document_id}  ${new_description}
-
   openprocurement_client.Підтвердити скасування закупівлі  ${username}  ${tender_uaid}  ${cancellation_id}
 
 
@@ -822,10 +817,6 @@ Library  openprocurement_client_helper.py
   ${tender}=  openprocurement_client.Пошук тендера по ідентифікатору  ${username}  ${tender_uaid}
   ${award}=  create_data_dict  data.status  active
   Set To Dictionary  ${award.data}  id=${tender.data.awards[${award_num}].id}
-  Run Keyword IF  'open' in '${MODE}'
-  ...      Set To Dictionary  ${award.data}
-  ...      qualified=${True}
-  ...      eligible=${True}
   ${reply}=  Call Method  ${USERS.users['${username}'].client}  patch_award  ${tender}  ${award}
   Log  ${reply}
 
@@ -889,11 +880,8 @@ Library  openprocurement_client_helper.py
   ${cancellation_data}=  munch_dict  arg=${cancellation_data}
   ${cancel_reply}=  Call Method  ${USERS.users['${username}'].client}  create_cancellation  ${tender}  ${cancellation_data}
   ${cancellation_id}=  Set variable  ${cancel_reply.data.id}
-
   ${document_id}=  openprocurement_client.Завантажити документацію до запиту на скасування  ${username}  ${tender_uaid}  ${cancellation_id}  ${document}
-
   openprocurement_client.Змінити опис документа в скасуванні  ${username}  ${tender_uaid}  ${cancellation_id}  ${document_id}  ${new_description}
-
   openprocurement_client.Підтвердити скасування закупівлі  ${username}  ${tender_uaid}  ${cancellation_id}
 
 
@@ -977,7 +965,7 @@ Library  openprocurement_client_helper.py
   [Arguments]  ${username}  ${tender_uaid}  ${qualification_num}
   ${tender}=  openprocurement_client.Пошук тендера по ідентифікатору  ${username}  ${tender_uaid}
   ${qualification}=  create_data_dict   data.status  active
-  Set To Dictionary  ${qualification.data}  id=${tender.data.qualifications[${qualification_num}].id}  eligible=${True}  qualified=${True}
+  Set To Dictionary  ${qualification.data}  id=${tender.data.qualifications[${qualification_num}].id}
   ${reply}=  Call Method  ${USERS.users['${username}'].client}  patch_qualification  ${tender}  ${qualification}
   Log  ${reply}
 
