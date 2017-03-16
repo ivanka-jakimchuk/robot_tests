@@ -1,5 +1,6 @@
 *** Settings ***
 Resource        keywords.robot
+Resource        base_keywords.robot
 Resource        resource.robot
 Suite Setup     Test Suite Setup
 Suite Teardown  Test Suite Teardown
@@ -38,6 +39,27 @@ Suite Teardown  Test Suite Teardown
   ...      contract_sign
   ${standstillEnd}=  Get Variable Value  ${USERS.users['${tender_owner}'].tender_data.data.awards[-1].complaintPeriod.endDate}
   Дочекатись дати  ${standstillEnd}
+
+Можливість редагувати вартість угоди
+  [Tags]  ${USERS.users['${tender_owner}'].broker}: Редагування угоди
+  ...   tender_owner
+  ...   ${USERS.users['${tender_owner}'].broker}
+  ...   contract_sign
+  [Setup]  Дочекатись синхронізації з майданчиком  ${tender_owner}
+  [Teardown]  Оновити LAST_MODIFICATION_DATE
+  ${value.amount}=  create_fake_amount
+  Set to dictionary  ${USERS.users['${tender_owner}']}  new_amount=${value.amount}
+  Run As  ${tender_owner}  Редагувати угоду  ${TENDER['TENDER_UAID']}  -1  value.amount  ${value.amount}
+
+
+Відображення відредагованої вартості угоди
+  [Tags]  ${USERS.users['${viewer}'].broker}: Відображення основних даних угоди
+  ...  viewer
+  ...  ${USERS.users['${viewer}'].broker}
+  ...  contract_sign
+  [Setup]  Дочекатись синхронізації з майданчиком  ${viewer}
+  Звірити відображення поля contracts[-1].value.amount тендера із ${USERS.users['${tender_owner}'].new_amount} для користувача ${viewer}
+
 
 
 Можливість завантажити документацію в угоду
