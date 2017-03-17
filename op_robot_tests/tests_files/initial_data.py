@@ -27,8 +27,13 @@ fake_ru.add_provider(CompanyProviderRuRu)
 def create_fake_sentence():
     return fake.sentence(nb_words=10, variable_nb_words=True)
 
+
 def create_fake_amount():
     return fake.random_int(min=1)
+
+
+def create_fake_date():
+    return get_now().isoformat()
 
 
 
