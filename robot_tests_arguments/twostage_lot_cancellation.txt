@@ -1,0 +1,6 @@
+-i create_tender
+-i find_tender
+-i add_lot
+-i add_item
+-i lot_cancelation
+-i delete_lot
