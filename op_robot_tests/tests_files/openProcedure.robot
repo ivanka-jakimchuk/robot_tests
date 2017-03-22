@@ -6,7 +6,7 @@ Suite Teardown  Test Suite Teardown
 
 
 *** Variables ***
-${MODE}             openeu
+${MODE}             twostage
 @{USED_ROLES}       tender_owner  provider  provider1  provider2  viewer
 ${DIALOGUE_TYPE}    EU
 
@@ -111,7 +111,7 @@ ${ITEM_MEAT}        ${True}
   ...      ${USERS.users['${viewer}'].broker}
   ...      tender_view
   ...      non-critical
-  Run Keyword IF  'open' in '${MODE}'
+  Run Keyword IF  'twostage' in '${MODE}'
   ...      Отримати дані із поля enquiryPeriod.startDate тендера для усіх користувачів
   ...      ELSE
   ...      Звірити відображення дати enquiryPeriod.startDate тендера для усіх користувачів
@@ -123,7 +123,7 @@ ${ITEM_MEAT}        ${True}
   ...      ${USERS.users['${viewer}'].broker}
   ...      tender_view  level2
   ...      critical
-  Run Keyword IF  'open' in '${MODE}'
+  Run Keyword IF  'twostage' in '${MODE}'
   ...      Отримати дані із поля enquiryPeriod.endDate тендера для усіх користувачів
   ...      ELSE
   ...      Звірити відображення дати enquiryPeriod.endDate тендера для усіх користувачів
@@ -1426,7 +1426,7 @@ ${ITEM_MEAT}        ${True}
   Можливість подати цінову пропозицію користувачем ${provider2}
 
 ##############################################################################################
-#             ABOVETRHESHOLD  BIDDING
+#             TWOSTAGE  BIDDING
 ##############################################################################################
 
 Можливість змінити документацію цінової пропозиції з публічної на приватну
@@ -1623,7 +1623,7 @@ ${ITEM_MEAT}        ${True}
 
 
 ##############################################################################################
-#             OPENEU  Pre-Qualification
+#             TWOSTAGE  Pre-Qualification
 ##############################################################################################
 
 Неможливість додати документацію до тендера під час кваліфікації

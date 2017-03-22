@@ -30,12 +30,11 @@ Resource           base_keywords.robot
 
 
 Можливість підтвердити цінову пропозицію учасником ${username}
-  ${status}=  Run Keyword IF  '${MODE}'=='openeu'  Set Variable  pending
-  ...                     ELSE IF  '${MODE}'=='openua'  Set Variable  active
+  ${status}=  Run Keyword IF  '${MODE}'=='twostage'  Set Variable  pending
   Run As  ${username}  Змінити цінову пропозицію  ${TENDER['TENDER_UAID']}  status  ${status}
 
 ##############################################################################################
-#             OPENEU  Bid documentation
+#             TWOSTAGE  Bid documentation
 ##############################################################################################
 
 Можливість змінити документацію цінової пропозиції з публічної на приватну учасником ${username}
@@ -52,7 +51,7 @@ Resource           base_keywords.robot
   Remove File  ${file_path}
 
 ##############################################################################################
-#             OPENEU  Pre-Qualification
+#             TWOSTAGE  Pre-Qualification
 ##############################################################################################
 
 Можливість завантажити документ у кваліфікацію ${bid_index} пропозиції
