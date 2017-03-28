@@ -6,6 +6,7 @@
 -v TENDER_MEAT:False
 -v ITEM_MEAT:False
 -v LOT_MEAT:False
+-v submissionMethodDetails:quick
 
 
 -i create_tender

@@ -13,6 +13,7 @@ Resource           resource.robot
   ...      mode=${MODE}
   ...      number_of_items=${NUMBER_OF_ITEMS}
   ...      number_of_lots=${NUMBER_OF_LOTS}
+  ...      submissionMethodDetails=${submissionMethodDetails}
   ...      tender_meat=${${TENDER_MEAT}}
   ...      lot_meat=${${LOT_MEAT}}
   ...      item_meat=${${ITEM_MEAT}}

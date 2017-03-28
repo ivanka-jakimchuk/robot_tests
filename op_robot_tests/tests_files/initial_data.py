@@ -70,14 +70,12 @@ def create_fake_doc():
 
 def test_tender_data(params,
                      periods=("enquiry", "tender"),
-                     submissionMethodDetails=None):
-    submissionMethodDetails = submissionMethodDetails \
-        if submissionMethodDetails else "quick"
+                     submissionMethodDetails="quick"):
+    submissionMethodDetails = submissionMethodDetails
     now = get_now()
     value_amount = round(random.uniform(3000, 99999999999.99), 2)  # max value equals to budget of Ukraine in hryvnias
     data = {
         "mode": "test",
-        "submissionMethodDetails": submissionMethodDetails,
         "description": fake.description(),
         "description_en": fake_en.sentence(nb_words=10, variable_nb_words=True),
         "description_ru": fake_ru.sentence(nb_words=10, variable_nb_words=True),
@@ -114,6 +112,8 @@ def test_tender_data(params,
             period_dict[period_name + "Period"][j + "Date"] = inc_dt.isoformat()
     data.update(period_dict)
     cpv_group = fake.cpv()[:3]
+    if params.get("submissionMethodDetails") == "quick":
+       data ['submissionMethodDetails'] = submissionMethodDetails
     if params.get('number_of_lots'):
         data['lots'] = []
         for lot_number in range(params['number_of_lots']):
