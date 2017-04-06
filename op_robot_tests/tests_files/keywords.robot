@@ -443,7 +443,7 @@ Log differences between dicts
 
 
 Перевірити неможливість зміни поля ${field} тендера на значення ${new_value} для користувача ${username}
-  Require Failure  ${username}  Внести зміни в тендер  ${TENDER['TENDER_UAID']}  ${field}  ${new_value}
+  Run As  ${username}  Внести зміни в тендер  ${TENDER['TENDER_UAID']}  ${field}  ${new_value}
 
 
 Звірити дату тендера

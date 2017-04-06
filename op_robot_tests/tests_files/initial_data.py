@@ -36,6 +36,10 @@ def create_fake_dgfDecisionID():
     return fake.dgfDecisionID()
 
 
+def create_fake_dgfID():
+    return fake.dgfID()
+
+
 def create_fake_tenderAttempts():
    return fake.random_int(min=1, max=4)
 
@@ -111,6 +115,30 @@ def create_fake_url():
     size_x =  random.randint(10, 1000)
     size_y =  random.randint(10, 1000)
     return '{0}/{1}x{2}/{3}/{4}.png'.format(base, size_x, size_y, background_color, font_color)
+
+
+def create_fake_description_ua():
+   return u"[ТЕСТУВАННЯ] {}" + fake.description()
+
+
+def create_fake_description_ru():
+   return u"[ТЕСТИРОВАНИЕ] {}" + fake_ru.sentence(nb_words=10, variable_nb_words=True)
+
+
+def create_fake_description_en():
+   return u"[ТЕСТИРОВАНИЕ] {}" + fake_en.sentence(nb_words=10, variable_nb_words=True)
+
+
+def create_fake_title_ua():
+   return u"[ТЕСТУВАННЯ] {}" + fake.title()
+
+
+def create_fake_title_ru():
+   return u"[ТЕСТИРОВАНИЕ] {}" + fake_ru.catch_phrase()
+
+
+def create_fake_title_en():
+   return u"[TESTING] {}" + fake_en.catch_phrase()
 
 
 def test_tender_data(params, periods=("enquiry", "tender")):
