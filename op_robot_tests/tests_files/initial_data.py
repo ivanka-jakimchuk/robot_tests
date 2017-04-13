@@ -46,6 +46,10 @@ def create_fake_description(name):
         return fake_ru.sentence(nb_words=10, variable_nb_words=True)
 
 
+def get_day(minutes, accelerator):
+   return int (minutes)/ accelerator
+
+
 def create_fake_dgfID():
     return fake.dgfID()
 

@@ -60,6 +60,16 @@ Suite Teardown  Test Suite Teardown
   Run As  ${tender_owner}  Підтвердити підписання контракту  ${TENDER['TENDER_UAID']}  -1
 
 
+Перевірити тривалість періоду підписання договору
+  [Tags]   ${USERS.users['${tender_owner}'].broker}: Відображення основних даних лоту
+  ...      tender_owner
+  ...      ${USERS.users['${tender_owner}'].broker}
+  ...      signing_period
+  ${startDate}=  Отримати дані із тендера  ${tender_owner}  ${TENDER['TENDER_UAID']}  awards[-1].signingPeriod.startDate
+  ${endDate}=  Отримати дані із тендера  ${tender_owner}  ${TENDER['TENDER_UAID']}  awards[-1].signingPeriod.endDate
+  Перевірити тривалість між ${startDate} і ${endDate}
+
+
 Відображення статусу підписаної угоди
   [Tags]  ${USERS.users['${viewer}'].broker}: Відображення основних даних угоди
   ...  viewer

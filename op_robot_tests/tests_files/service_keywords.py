@@ -20,6 +20,7 @@ from time import sleep
 # Please ignore the warning given by Flake8 or other linter.
 from .initial_data import (
     create_fake_amount,
+    get_day,
     create_fake_cancellation_reason,
     create_fake_doc,
     create_fake_guarantee,

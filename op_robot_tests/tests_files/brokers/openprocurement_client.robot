@@ -1040,3 +1040,10 @@ Library  openprocurement_client_helper.py
   ${reply}=  Call Method  ${USERS.users['${username}'].client}  patch_tender  ${tender}
   Log  ${reply}
   [Return]  ${reply}
+
+
+Перевірити тривалість між ${startDate} і ${endDate}
+  ${period_intervals}=  compute_intrs  ${BROKERS}  ${used_brokers}
+  ${minutes}=  get_day  28800  ${period_intervals.${MODE}.accelerator}
+  ${date}=  add_minutes_to_date  ${startDate}  ${minutes}
+  Порівняти об'єкти  ${endDate}  ${date}
